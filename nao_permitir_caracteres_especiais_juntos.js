@@ -1,31 +1,16 @@
 /* -------------------------------------------------------------------------- */
-/*   REGEX PARA VERIFICAR DOIS CARACTERS ESPECIAIS JUNTOS, EXEMPLO .. OU ,,   */
+/*                 NÃO PERMITIR COISAS DO TIPO .. OU ,, OU //                 */
 /* -------------------------------------------------------------------------- */
+/* OBS: CASO VC ESCREVA DUAS LETRAS 
+ACENTUADAS ELE VAI CONSIDERAR QUE VC ESTÁ USANDO CARACTERES ESPECIAIS,
+PARA EVITAR ESSE PROBLEMA PRIMEIRO REMOVA OS ACENTOS DA STRING */
 
-const nao_permitir_caracteres_especiais_juntos = (payload) => {
-  return /(?:[^`!@#$%^&*\-_=+'\/.,\[\]\\]*[`!@#$%^&*\-_=+'\/.,\[\]\\]){2}/.test(
-    payload
-  );
-};
+/* --------------------------------- INICIO --------------------------------- */
 
-var A = "vaca";
-var B = "vaca..";
-console.log(
-  nao_permitir_caracteres_especiais_juntos(A),
-  nao_permitir_caracteres_especiais_juntos(B)
-);
-/* -------------------------------------------------------------------------- */
+var nao_permitir_caracteres_especiais_juntos = payload=>{
+  return /^[^\d|^\w]|[^\d|^\w]{2}|[^\d|^\w]$/.test(payload)
+}
 
-const nao_permitir_caracteres_especiais_juntos_versao_dois = (payload) => {
-  return /(?=(.*[`!@#$%\^&*\-_=\+'/\.,]){2})/.test(payload);
-};
-var A = "vaca,,";
-var B = "vaca..";
-console.log(
-  nao_permitir_caracteres_especiais_juntos(A),
-  nao_permitir_caracteres_especiais_juntos(B)
-);
+console.log(nao_permitir_caracteres_especiais_juntos("11aaaa.w.w.44a"));
 
-/* -------------------------------------------------------------------------- */
-/*                                     FIM                                    */
-/* -------------------------------------------------------------------------- */
+/* ----------------------------------- FIM ---------------------------------- */
